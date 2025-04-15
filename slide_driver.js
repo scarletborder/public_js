@@ -56,7 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
             index = 0;
         }
         
-        showSlide(index);
+        // 使用平移动画切换幻灯片
+        const slideContainer = document.querySelector('.fp-slides-container');
+        slideContainer.style.transform = `translateX(-${index * 930}px)`; // 每张幻灯片宽度为930px
+
         resetTimer(); // 重置自动播放计时器
     }
     
@@ -91,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             nextSlide();
+            resetTimer(); // 重置定时器
         });
     });
     
@@ -98,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             prevSlide();
+            resetTimer(); // 重置定时器
         });
     });
     
