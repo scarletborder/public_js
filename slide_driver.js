@@ -1,4 +1,6 @@
+console.log('slide sloader')
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('slide drive')
     // 初始化变量
     const slider = document.querySelector('.fp-slider');
     const slides = document.querySelectorAll('.fp-slides-items');
