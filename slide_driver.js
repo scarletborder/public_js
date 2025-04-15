@@ -1,4 +1,3 @@
-<script>
 document.addEventListener('DOMContentLoaded', function() {
     // 获取所有幻灯片（注意：这里只查找类名为 fp-slides-items 的元素）
     var slides = document.querySelectorAll('.fp-slides-items');
@@ -85,4 +84,3 @@ document.addEventListener('DOMContentLoaded', function() {
     // 如果需要自动播放幻灯片，可以启用下面这段代码；这里设置每5秒自动切换一次
     setInterval(nextSlide, 5000);
 });
-</script>
