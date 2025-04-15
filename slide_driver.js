@@ -1,86 +1,136 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 获取所有幻灯片（注意：这里只查找类名为 fp-slides-items 的元素）
-    var slides = document.querySelectorAll('.fp-slides-items');
-    var currentSlide = 0;
-    var slideCount = slides.length;
+    // 初始化变量
+    const slider = document.querySelector('.fp-slider');
+    const slides = document.querySelectorAll('.fp-slides-items');
+    const nextBtn = document.querySelectorAll('.fp-next');
+    const prevBtn = document.querySelectorAll('.fp-prev');
+    const pagerContainer = document.querySelector('.fp-pager');
     
-    // 获取所有“下一页”和“上一页”按钮（注意：这里用 querySelectorAll 查找所有的按钮）
-    var nextButtons = document.querySelectorAll('.fp-next');
-    var prevButtons = document.querySelectorAll('.fp-prev');
+    let currentSlide = 0;
+    let slideInterval;
+    const autoPlayDelay = 5000; // 自动轮播间隔，5秒
     
-    // 获取分页指示器容器
-    var fpPager = document.querySelector('.fp-pager');
-
-    // 根据幻灯片数量动态生成分页指示器
-    if (fpPager) {
-        for (var i = 0; i < slideCount; i++) {
-            var bullet = document.createElement('span');
-            bullet.className = 'fp-page';
-            bullet.dataset.index = i;
-            bullet.style.cursor = 'pointer';
-            bullet.style.marginRight = '5px';
-            bullet.addEventListener('click', function() {
-                currentSlide = parseInt(this.dataset.index, 10);
-                showSlide(currentSlide);
+    // 初始化分页指示器
+    function initPager() {
+        pagerContainer.innerHTML = '';
+        slides.forEach((_, index) => {
+            const pager = document.createElement('a');
+            pager.href = '#';
+            pager.dataset.index = index;
+            pager.addEventListener('click', function(e) {
+                e.preventDefault();
+                goToSlide(parseInt(this.dataset.index));
             });
-            fpPager.appendChild(bullet);
-        }
-    }
-
-    // 更新分页指示器的样式，使当前页显示为 active
-    function updatePager() {
-        var bullets = document.querySelectorAll('.fp-page');
-        bullets.forEach(function(bullet, i) {
-            if (i === currentSlide) {
-                bullet.classList.add('active');
-                // 也可以手动设置样式，如改变背景色
-                bullet.style.backgroundColor = '#333';
-            } else {
-                bullet.classList.remove('active');
-                bullet.style.backgroundColor = '';
-            }
+            pagerContainer.appendChild(pager);
         });
     }
-
-    // 根据索引显示相应幻灯片，并隐藏其它幻灯片
+    
+    // 显示指定幻灯片
     function showSlide(index) {
-        slides.forEach(function(slide, i) {
-            slide.style.display = i === index ? 'block' : 'none';
+        // 隐藏所有幻灯片
+        slides.forEach(slide => {
+            slide.style.display = 'none';
         });
-        updatePager();
+        
+        // 显示当前幻灯片
+        slides[index].style.display = 'block';
+        
+        // 更新分页指示器
+        const pagers = pagerContainer.querySelectorAll('a');
+        pagers.forEach((pager, idx) => {
+            pager.classList.toggle('active', idx === index);
+        });
+        
+        // 更新当前幻灯片索引
+        currentSlide = index;
     }
-
-    // 切换到下一页
+    
+    // 跳转到指定幻灯片
+    function goToSlide(index) {
+        // 确保索引在有效范围内
+        if (index < 0) {
+            index = slides.length - 1;
+        } else if (index >= slides.length) {
+            index = 0;
+        }
+        
+        showSlide(index);
+        resetTimer(); // 重置自动播放计时器
+    }
+    
+    // 下一张幻灯片
     function nextSlide() {
-        currentSlide = (currentSlide + 1) % slideCount;
-        showSlide(currentSlide);
+        goToSlide(currentSlide + 1);
     }
-
-    // 切换到上一页
+    
+    // 上一张幻灯片
     function prevSlide() {
-        currentSlide = (currentSlide - 1 + slideCount) % slideCount;
-        showSlide(currentSlide);
+        goToSlide(currentSlide - 1);
     }
-
-    // 为“下一页”按钮绑定点击事件
-    nextButtons.forEach(function(button) {
-        button.addEventListener('click', function(e) {
+    
+    // 开始自动播放
+    function startAutoPlay() {
+        slideInterval = setInterval(nextSlide, autoPlayDelay);
+    }
+    
+    // 停止自动播放
+    function stopAutoPlay() {
+        clearInterval(slideInterval);
+    }
+    
+    // 重置自动播放计时器
+    function resetTimer() {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+    
+    // 添加事件监听器
+    nextBtn.forEach(btn => {
+        btn.addEventListener('click', function(e) {
             e.preventDefault();
             nextSlide();
         });
     });
     
-    // 为“上一页”按钮绑定点击事件
-    prevButtons.forEach(function(button) {
-        button.addEventListener('click', function(e) {
+    prevBtn.forEach(btn => {
+        btn.addEventListener('click', function(e) {
             e.preventDefault();
             prevSlide();
         });
     });
-
-    // 首次加载时显示第一张幻灯片
-    showSlide(currentSlide);
-
-    // 如果需要自动播放幻灯片，可以启用下面这段代码；这里设置每5秒自动切换一次
-    setInterval(nextSlide, 5000);
+    
+    // 鼠标悬停时暂停自动播放
+    slider.addEventListener('mouseenter', stopAutoPlay);
+    slider.addEventListener('mouseleave', startAutoPlay);
+    
+    // 触摸事件处理（移动端支持）
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    slider.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoPlay();
+    }, { passive: true });
+    
+    slider.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        startAutoPlay();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const threshold = 50; // 最小滑动距离
+        if (touchEndX < touchStartX - threshold) {
+            // 左滑 -> 下一张
+            nextSlide();
+        } else if (touchEndX > touchStartX + threshold) {
+            // 右滑 -> 上一张
+            prevSlide();
+        }
+    }
+    
+    // 初始化
+    initPager();
+    showSlide(0);
+    startAutoPlay();
 });
