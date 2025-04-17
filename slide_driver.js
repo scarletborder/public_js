@@ -26,7 +26,7 @@ function initSwiper() {
   
   slideLists.forEach(slide => {
     const slideElement = document.createElement('div');
-    slideElement.className = 'swiper-slide relative';
+    slideElement.className = 'swiper-slide';
     slideElement.innerHTML = `
       <a href="${slide.link}" class="block w-full h-full">
         <img src="${slide.img}" alt="${slide.title}" class="w-full h-full object-cover">
@@ -50,7 +50,7 @@ function initSwiper() {
       prevEl: '.swiper-button-prev',
     },
     autoplay: {
-      delay: 40000,
+      delay: 4000,
       disableOnInteraction: false,
     },
     speed: 800,
