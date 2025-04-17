@@ -33,16 +33,34 @@ slideLists.forEach(item => {
 });
 
 // 2) 初始化 Swiper
-const swiper = new Swiper('.swiper-container', {
-  loop: true,
-  autoplay: {
-    delay: 4000,
-    disableOnInteraction: false, // 点击后不停止，而是重置计时
-  },
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  }
-});
+ const swiper = new Swiper('.swiper-container', {
+    // —— 强制横向滑动
+    direction: 'horizontal',
+
+    // —— 每页只显示 1 张
+    slidesPerView: 1,
+    slidesPerGroup: 1,
+
+    // —— 幻灯片之间不留空隙
+    spaceBetween: 0,
+
+    // —— 循环模式
+    loop: true,
+
+    // —— 切换动画持续时间（ms）
+    speed: 600,
+
+    // —— 自动播放，每 4 秒切换；点击后不会停，而是重置计时
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false
+    },
+
+    // —— 前后按钮
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
+  });
 
 // （Swiper 的 autoplay + disableOnInteraction 已经满足“点击重置定时器”的需求）
