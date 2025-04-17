@@ -1,66 +1,71 @@
-// 数据源
 const slideLists = [
-  { title: 'NTQQ liteloader插件教程', desp: '新手向,通过学习一些最佳实践得出编写liteloaderQQNT插件的经验心得',
-       link: '/2025/04/ntqq-liteloader-noobs-liteloader-explore.html',
-       img: 'https://i.postimg.cc/59L5ksmK/1.png' 
+  {
+    title: 'NTQQ liteloader插件教程',
+    desp: '新手向, 通过学习一些最佳实践得出编写liteloaderQQNT插件的经验心得',
+    link: '/2025/04/ntqq-liteloader-noobs-liteloader-explore.html',
+    img: 'https://i.postimg.cc/59L5ksmK/1.png'
   },
-  { title: 'simpleTex WebAPI', desp: '一个借用SimpleTex解决在线Tex文档识别的方案',
-       link: '/2024/03/simpletex-webapi.html', 
-       img: 'https://i.postimg.cc/xTNQ2SB3/image.png' 
+  {
+    title: 'simpleTex WebAPI',
+    desp: '一个借用SimpleTex解决在线Tex文档识别的方案',
+    link: '/2024/03/simpletex-webapi.html',
+    img: 'https://i.postimg.cc/xTNQ2SB3/image.png'
   },
-  { title: '标题三', desp: '这是第三张幻灯片的描述', 
-       link: '#', 
-       img: 'https://i.postimg.cc/qqs83FdM/image.png'
+  {
+    title: '标题三',
+    desp: '这是第三张幻灯片的描述',
+    link: '#',
+    img: 'https://i.postimg.cc/qqs83FdM/image.png'
   }
 ];
 
-// 1) 构建 DOM
-const wrapper = document.querySelector('.swiper-wrapper');
-slideLists.forEach(item => {
-  const slide = document.createElement('div');
-  slide.className = 'swiper-slide';
-  slide.innerHTML = `
-    <a href="${item.link}" style="display:block; width:100%; height:100%; position:relative;">
-      <img src="${item.img}" alt="${item.title}">
-      <div class="slide-overlay"></div>
-      <div class="slide-content">
-        <h2>${item.title}</h2>
-        <p>${item.desp}</p>
-      </div>
-    </a>
-  `;
-  wrapper.appendChild(slide);
-});
-
-// 2) 初始化 Swiper
- const swiper = new Swiper('.swiper-container', {
-    // —— 强制横向滑动
-    direction: 'horizontal',
-
-    // —— 每页只显示 1 张
-    slidesPerView: 1,
-    slidesPerGroup: 1,
-
-    // —— 幻灯片之间不留空隙
-    spaceBetween: 0,
-
-    // —— 循环模式
-    loop: true,
-
-    // —— 切换动画持续时间（ms）
-    speed: 600,
-
-    // —— 自动播放，每 4 秒切换；点击后不会停，而是重置计时
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false
-    },
-
-    // —— 前后按钮
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    }
+// 初始化 Swiper
+function initSwiper() {
+  // 动态插入幻灯片
+  const swiperWrapper = document.querySelector('.swiper-wrapper');
+  
+  slideLists.forEach(slide => {
+    const slideElement = document.createElement('div');
+    slideElement.className = 'swiper-slide';
+    slideElement.innerHTML = `
+      <a href="${slide.link}" class="block w-full h-full">
+        <img src="${slide.img}" alt="${slide.title}" class="w-full h-full object-cover">
+        <div class="absolute bottom-0 w-full h-[40%] bg-black bg-opacity-50 flex flex-col justify-center px-4">
+          <h3 class="text-white text-2xl font-bold mb-2">${slide.title}</h3>
+          <p class="text-white text-base">${slide.desp}</p>
+        </div>
+      </a>
+    `;
+    swiperWrapper.appendChild(slideElement);
   });
 
-// （Swiper 的 autoplay + disableOnInteraction 已经满足“点击重置定时器”的需求）
+  // Swiper 配置
+  const swiper = new Swiper('.swiper-container', {
+    direction: 'horizontal',
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    speed: 800,
+  });
+
+  // 重置定时器
+  function resetAutoplay() {
+    swiper.autoplay.stop();
+    swiper.autoplay.start();
+  }
+
+  // 点击导航按钮时重置定时器
+  document.querySelector('.swiper-button-next').addEventListener('click', resetAutoplay);
+  document.querySelector('.swiper-button-prev').addEventListener('click', resetAutoplay);
+}
+
+// 确保 DOM 加载完成
+document.addEventListener('DOMContentLoaded', initSwiper);
