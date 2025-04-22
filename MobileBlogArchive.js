@@ -194,7 +194,7 @@ var startIndex = 1;
   // 原始函数
   function sendQuery12() {
       var scpt = document.createElement("script");
-      scpt.src = "http://blog.scarletborder.cn/feeds/posts/summary?alt=json&callback=processPostList12&start-index=" + startIndex + "&max-results=" + maxResults;
+      scpt.src = "https://blog.scarletborder.cn/feeds/posts/summary?alt=json&callback=processPostList12&start-index=" + startIndex + "&max-results=" + maxResults;
       document.body.appendChild(scpt);
   }
 
