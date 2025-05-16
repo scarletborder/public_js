@@ -4021,13 +4021,12 @@ body {
   max-width: 1980px;
   display: flex;
   flex-direction: row;
-  /* 横向排列 */
   margin: 0 auto;
   padding: 20px 0;
-  /* 上下添加一些空间，防止内容过于紧凑 */
   background-color: rgba(0, 0, 0, 0.6);
   justify-content: space-between;
-  /* 横向排列时，内容之间的间距 */
+  position: relative;
+  /* 添加相对定位 */
 }
 
 #main-wrapper {
@@ -4036,6 +4035,8 @@ body {
   padding: 2em 0.1em;
   word-wrap: break-word;
   overflow: hidden;
+  /* 添加右侧边框 */
+  border-right: 1px solid #626277;
 }
 
 #rsidebar-wrapper {
