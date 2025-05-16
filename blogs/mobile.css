@@ -1,0 +1,409 @@
+
+/* 手机整体背景和基础文字样式 */
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #A4A4C6;
+  /* 主色调背景 */
+  color: #E6E6FF;
+  /* 基础文字颜色 */
+  font-family: Arial, Helvetica, Sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* 手机头部区域 */
+#header-wrapper {
+  background-color: #83839E;
+  /* 更深色调用于头部背景 */
+  padding: 10px;
+  text-align: center;
+}
+
+/* 手机文章主体 */
+.post {
+  border: 1px solid #626277;
+  /* 边框使用较深的颜色 */
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  word-wrap: break-word !important;
+  /* 强制换行 */
+  white-space: normal !important;
+  /* 默认的空白字符处理 */
+  overflow-wrap: break-word !important;
+  /* 处理长单词的换行 */
+}
+
+/* 标题样式 */
+.post-title a,
+.post-title a:visited {
+  color: #E6E6FF;
+  /* 文本颜色 */
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* 导航及其他链接 */
+a:link,
+a:visited {
+  color: #A4BBC6;
+  /* 适用于按钮和链接的更深文字颜色 */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #83839E;
+  text-decoration: underline;
+}
+
+/* 边栏或其他辅助区域（如果手机布局中存在） */
+.sidebar {
+  background-color: #83839E;
+  color: #E6E6FF;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+/* 手机容器适应屏宽 */
+#content-wrapper {
+  padding: 0 10px;
+  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* 其它针对手机视图的自定义样式可以在此处添加 */
+#rsidebar-wrapper {
+  width: 85%;
+  align-self: center;
+}
+
+#main-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* 竖向排列 */
+  margin: 0 auto;
+  padding: 20px 0;
+  /* 上下添加一些空间，防止内容过于紧凑 */
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#main-wrapper {
+  width: 100%;
+  margin-left: 0;
+  padding: 0;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+#rsidebar-wrapper {
+  width: 100%;
+  margin-right: 0;
+  padding: 0;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+#blog-pager {
+  font-size: 24px !important;
+  padding-top: 6vw !important;
+}
+
+.blog-pager-newer-link {
+  color: #fff !important;
+  /* 设置更亮的字体颜色 */
+  font-weight: bold !important;
+  /* 增加字体的粗细，使按钮更醒目 */
+  padding: 10px 20px !important;
+  /* 添加内边距，方便点击 */
+  text-decoration: none !important;
+  /* 去掉下划线 */
+  transition: all 0.3s ease;
+  /* 添加过渡效果 */
+}
+
+.blog-pager-newer-link:hover {
+  color: #f1f1f1 !important;
+  /* 鼠标悬停时字体颜色更亮 */
+  transform: scale(1.2);
+  /* 鼠标悬停时轻微放大 */
+}
+
+.blog-pager-older-link {
+  color: #fff !important;
+  /* 设置更亮的字体颜色 */
+  font-weight: bold !important;
+  /* 增加字体的粗细，使按钮更醒目 */
+  padding: 10px 20px !important;
+  /* 添加内边距，方便点击 */
+  text-decoration: none !important;
+  /* 去掉下划线 */
+  transition: all 0.3s ease;
+  /* 添加过渡效果 */
+}
+
+.blog-pager-older-link:hover {
+  color: #f1f1f1 !important;
+  /* 鼠标悬停时字体颜色更亮 */
+  transform: scale(1.2);
+  /* 鼠标悬停时轻微放大 */
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#outer-wrapper {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+#header-wrapper {
+  width: 100%;
+  padding: 10px;
+  margin: 0px;
+  height: auto;
+}
+
+#header {
+  width: 100%;
+  padding: 10px 0px;
+  margin: 0px;
+  float: none;
+  text-align: center;
+}
+
+#header2 {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  float: none;
+  text-align: center;
+}
+
+#header a img {
+  margin: 0px auto;
+  padding: 0px !important;
+}
+
+#header2 .widget {
+  float: none;
+  padding: 0px !important;
+}
+
+#content-wrapper {
+  width: 100%;
+  margin: 0px;
+  padding: 10px;
+}
+
+#main-wrapper {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  float: none;
+}
+
+#sidebar-wrapper {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  float: none;
+}
+
+#lsidebar-wrapper {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  float: none;
+}
+
+#rsidebar-wrapper {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  float: none;
+}
+
+.menu-primary-container,
+.menu-secondary-container {
+  float: none;
+  margin-left: 0;
+  margin-right: 0;
+  display: flex;
+}
+
+#top-social-profiles {
+  float: none;
+  width: 100%;
+  display: block;
+  text-align: center;
+  height: auto;
+}
+
+.footer-widget-box {
+  width: 100%;
+  float: none;
+  padding: 10px;
+  margin: 0px;
+}
+
+#footer {
+  height: auto;
+}
+
+#copyrights,
+#credits {
+  width: 100%;
+  padding: 5px 0px;
+  margin: 0px;
+  display: flex;
+  float: none;
+  text-align: center;
+  height: auto;
+}
+
+div.span-1,
+div.span-2,
+div.span-3,
+div.span-4,
+div.span-5,
+div.span-6,
+div.span-7,
+div.span-8,
+div.span-9,
+div.span-10,
+div.span-11,
+div.span-12,
+div.span-13,
+div.span-14,
+div.span-15,
+div.span-16,
+div.span-17,
+div.span-18,
+div.span-19,
+div.span-20,
+div.span-21,
+div.span-22,
+div.span-23,
+div.span-24 {
+  float: none;
+  margin: 0px
+}
+
+.span-1,
+.span-2,
+.span-3,
+.span-4,
+.span-5,
+.span-6,
+.span-7,
+.span-8,
+.span-9,
+.span-10,
+.span-11,
+.span-12,
+.span-13,
+.span-14,
+.span-15,
+.span-16,
+.span-17,
+.span-18,
+.span-19,
+.span-20,
+.span-21,
+.span-22,
+.span-23,
+.span-24,
+div.span-24 {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.last,
+div.last {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* < !-- 字体放大 --> */
+h1 {
+  font-size: 6vw;
+}
+
+h2 {
+  font-size: 5.5vw;
+}
+
+h3 {
+  font-size: 5vw;
+}
+
+h4 {
+  font-size: 4.5vw;
+}
+
+h5 {
+  font-size: 4vw;
+}
+
+h6 {
+  font-size: 3.5vw;
+}
+
+p {
+  font-size: 3vw;
+  margin-top: 10px;
+  /* 上边距 */
+  margin-bottom: 10px;
+  /* 下边距 */
+  line-height: 1.6;
+  /* 1.6 的行高，即每行高度为字体大小的1.6倍 */
+}
+
+pre {
+  font-size: 2em;
+}
+
+.lang_name {
+  font-size: 4vw;
+}
+
+p>span {
+  font-size: 4vw;
+}
+
+li {
+  font-size: 3vw;
+  margin-top: 10px;
+  /* 上边距 */
+  margin-bottom: 10px;
+  /* 下边距 */
+  line-height: 1.4;
+  /* 1.4 的行高 */
+}
+
+li::marker {
+  font-size: 2.5em;
+}
+
+/* < !-- alert --> */
+.md-alert-text {
+  font-size: 1.9em;
+}
