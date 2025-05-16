@@ -3999,6 +3999,90 @@ code,
   color: #646695;
 }
 
+#post-catalog {
+  position: fixed;
+  width: 20%;
+  background: #1e1e2e;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  padding: 1em;
+}
+
+.post-catalog-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.post-catalog-list li {
+  margin: 0.6em 0;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+.post-catalog-list li a {
+  text-decoration: none;
+  color: #c5c5ed;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+.post-catalog-list li a::before {
+  content: "-";
+  display: inline-block;
+  margin-right: 0.5em;
+  font-size: 0.8em;
+  color: #c5c5ed;
+  transition: color 0.3s ease;
+}
+.post-catalog-list li a:hover {
+  color: #626277;
+}
+.post-catalog-list li a:hover::before {
+  color: #626277;
+}
+.post-catalog-list li:hover {
+  transform: translateY(-2px);
+}
+.post-catalog-list li.post-catalog-h1 a {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-left: 0.8em;
+}
+.post-catalog-list li.post-catalog-h2 a {
+  font-size: 1.1em;
+  padding-left: 1.6em;
+}
+.post-catalog-list li.post-catalog-h3 a {
+  font-size: 1em;
+  padding-left: 2.4em;
+}
+.post-catalog-list li.post-catalog-h4 a {
+  font-size: 0.95em;
+  padding-left: 3.2em;
+}
+.post-catalog-list li.post-catalog-h5 a {
+  font-size: 0.9em;
+  padding-left: 4em;
+  opacity: 0.85;
+}
+
+.back-to-top {
+  margin-top: 1.5em;
+  padding: 0.8em 1.2em;
+  background: linear-gradient(135deg, #A4BBC6, #83969E);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.back-to-top:hover {
+  background: linear-gradient(135deg, #83969E, #627077);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
+}
+
 /* 桌面版样式可以采用原有样式或自定义调整 */
 body {
   background: #020201 url(https://cdnjson.com/images/2023/07/26/87847955_p0.png) center top no-repeat fixed;
@@ -4038,6 +4122,7 @@ body {
 }
 
 #rsidebar-wrapper {
+  position: relative;
   width: 23%;
   margin-right: 3%;
   padding: 0;
