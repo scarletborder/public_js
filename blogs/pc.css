@@ -3893,6 +3893,103 @@ li > p {
   display: unset;
 }
 
+.md-fences,
+pre,
+code,
+.CodeMirror,
+.CodeMirror-scroll {
+  background-color: #1e1e1e !important;
+  color: #dadada !important;
+}
+
+.CodeMirror-selected,
+.CodeMirror-selectedtext {
+  background-color: rgba(173, 214, 255, 0.1490196078) !important;
+}
+
+.CodeMirror::selection,
+.CodeMirror::-moz-selection {
+  background: #3a3d41 !important;
+}
+
+.CodeMirror-gutters {
+  background: inherit;
+}
+
+.CodeMirror-linenumber {
+  color: #2b91af !important;
+}
+
+.CodeMirror-indent-guide-active {
+  background-color: #707070 !important;
+}
+
+.CodeMirror-indent-guide {
+  background-color: #404040 !important;
+}
+
+.cm-inlay-hint {
+  background-color: #3e3e3e !important;
+  color: #a9a8a7 !important;
+}
+
+.CodeMirror div.CodeMirror-cursor {
+  border-left: 1px solid #dadada !important;
+}
+
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment {
+  color: #6A9955;
+}
+.cm-s-inner .cm-keyword, .cm-s-inner.cm-keyword {
+  color: #569CD6;
+}
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom,
+.cm-s-inner .cm-number, .cm-s-inner.cm-number {
+  color: #B5CEA8;
+}
+.cm-s-inner .cm-def, .cm-s-inner.cm-def {
+  color: #DCDCAA;
+}
+.cm-s-inner .cm-variable, .cm-s-inner.cm-variable {
+  color: #9CDCFE;
+}
+.cm-s-inner .cm-variable-2, .cm-s-inner.cm-variable-2 {
+  color: #4EC9B0;
+}
+.cm-s-inner .cm-string, .cm-s-inner.cm-string {
+  color: #CE9178;
+}
+.cm-s-inner .cm-string-2, .cm-s-inner.cm-string-2 {
+  color: #D16969;
+}
+.cm-s-inner .cm-meta, .cm-s-inner.cm-meta, .cm-qualifier .cm-s-inner.cm-qualifier {
+  color: #D4D4D4;
+}
+.cm-s-inner .cm-builtin, .cm-s-inner.cm-builtin {
+  color: #4EC9B0;
+}
+.cm-s-inner .cm-operator, .cm-s-inner.cm-operator {
+  color: #D4D4D4;
+}
+.cm-s-inner .cm-punctuation, .cm-s-inner.cm-punctuation {
+  color: #B4B4B4;
+}
+.cm-s-inner .cm-tag, .cm-s-inner.cm-tag {
+  color: #569CD6;
+}
+.cm-s-inner .cm-attribute, .cm-s-inner.cm-attribute {
+  color: #9CDCFE;
+}
+.cm-s-inner .cm-invalid, .cm-s-inner.cm-invalid {
+  color: #F44747;
+}
+.cm-s-inner .cm-link, .cm-s-inner.cm-link {
+  color: #6796E6;
+}
+.cm-regex .cm-s-inner.cm-regex {
+  color: #646695;
+}
+
 /* 桌面版样式可以采用原有样式或自定义调整 */
 body {
   background: #020201 url(https://cdnjson.com/images/2023/07/26/87847955_p0.png) center top no-repeat fixed;
