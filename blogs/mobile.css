@@ -994,7 +994,7 @@ a img {
   width: 100%;
   margin: 0px auto 0px;
   overflow: hidden;
-  background-color: #83839E;
+  background-color: rgba(131, 131, 158, 0.2);
 }
 
 #header-inner {
