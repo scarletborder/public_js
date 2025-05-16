@@ -24,20 +24,35 @@ function initSwiper() {
   // 动态插入幻灯片
   const swiperWrapper = document.querySelector('.swiper-wrapper');
   
+
   slideLists.forEach(slide => {
-    const slideElement = document.createElement('div');
-    slideElement.className = 'swiper-slide';
-    slideElement.innerHTML = `
-      <a href="${slide.link}" class="block w-full h-full">
+    const slideEl = document.createElement('div');
+    slideEl.className = 'swiper-slide';
+    slideEl.innerHTML = `
+      <a href="${slide.link}" class="block w-full h-full relative group">
         <img src="${slide.img}" alt="${slide.title}" class="w-full h-full object-cover">
-        <div class="absolute bottom-0 w-full h-[40%] bg-black bg-opacity-50 flex flex-col justify-center px-4">
-          <h3 class="text-white text-2xl font-bold mb-2">${slide.title}</h3>
-          <p class="text-white text-base">${slide.desp}</p>
+        <div
+          class="absolute bottom-0 w-full h-[40%]
+                 bg-black bg-opacity-50
+                 opacity-0 group-hover:opacity-100
+                 transition-opacity duration-300
+                 flex flex-col justify-center px-4
+                 overflow-hidden
+                 max-h-1/2">
+          <h3 class="text-white font-bold mb-2
+                     text-[clamp(1rem,4vw,2rem)]
+                     leading-tight">
+            ${slide.title}
+          </h3>
+          <p class="text-white text-base line-clamp-2">
+            ${slide.desp}
+          </p>
         </div>
       </a>
     `;
-    swiperWrapper.appendChild(slideElement);
+    swiperWrapper.appendChild(slideEl);
   });
+
 
   // Swiper 配置
   const swiper = new Swiper('.swiper-container', {
