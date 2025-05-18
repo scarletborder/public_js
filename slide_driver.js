@@ -1,3 +1,7 @@
+// 导入swiper
+import Swiper from 'https://unpkg.com/swiper@8.4.7/swiper-bundle.esm.browser.min.js';
+
+// 2. 你的数据
 const slideLists = [
   {
     title: 'NTQQ liteloader插件教程',
@@ -19,68 +23,54 @@ const slideLists = [
   }
 ];
 
-// 初始化 Swiper
-function initSwiper() {
-  // 动态插入幻灯片
-  const swiperWrapper = document.querySelector('.swiper-wrapper');
-  
+// 3. 动态生成 slides
+const wrapper = document.querySelector('.swiper-wrapper');
+slideLists.forEach(({ title, desp, link, img }) => {
+  const slideEl = document.createElement('div');
+  slideEl.classList.add('swiper-slide');
+  slideEl.innerHTML = `
+    <a href="${link}">
+      <div class="image-container">
+        <img src="${img}" alt="${title}" />
+      </div>
+      <h5>${title}</h5>
+      <p>${desp}</p>
+    </a>
+  `;
+  wrapper.appendChild(slideEl);
+});
 
-  slideLists.forEach(slide => {
-    const slideEl = document.createElement('div');
-    slideEl.className = 'swiper-slide';
-    slideEl.innerHTML = `
-      <a href="${slide.link}" class="block w-full h-full relative group">
-        <img src="${slide.img}" alt="${slide.title}" class="w-full h-full object-cover">
-        <div
-          class="absolute bottom-0 w-full h-[40%]
-                 bg-black bg-opacity-50
-                 opacity-0 group-hover:opacity-100
-                 transition-opacity duration-300
-                 flex flex-col justify-center px-4
-                 overflow-hidden
-                 max-h-1/2">
-          <h3 class="text-white font-bold mb-2
-                     text-[clamp(1rem,4vw,2rem)]
-                     leading-tight">
-            ${slide.title}
-          </h3>
-          <p class="text-white text-base line-clamp-2">
-            ${slide.desp}
-          </p>
-        </div>
-      </a>
-    `;
-    swiperWrapper.appendChild(slideEl);
-  });
+// 4. 初始化 Swiper
+const swiper = new Swiper('.mySwiper', {
+  // 保证横向滚动
+  direction: 'horizontal',
+  // 一次只看一张
+  slidesPerView: 1,
+  // 循环模式
+  loop: true,
+  // 自动播放
+  autoplay: {
+    delay: 4000,
+    disableOnInteraction: false,
+  },
+  // 导航按钮
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  // 动画速度（可选）
+  speed: 600,
+});
 
-
-  // Swiper 配置
-  const swiper = new Swiper('.swiper-container', {
-    direction: 'horizontal',
-    slidesPerView: 1,
-    spaceBetween: 0,
-    loop: true,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false,
-    },
-    speed: 800,
-  });
-
-  // 重置定时器
-  function resetAutoplay() {
-    swiper.autoplay.stop();
-    swiper.autoplay.start();
-  }
-
-  // 点击导航按钮时重置定时器
-  document.querySelector('.swiper-button-next').addEventListener('click', resetAutoplay);
-  document.querySelector('.swiper-button-prev').addEventListener('click', resetAutoplay);
+// 5. 点击前／后按钮时重置一次定时器
+function resetAutoplay() {
+  swiper.autoplay.stop();
+  swiper.autoplay.start();
 }
 
-// 确保 DOM 加载完成
-document.addEventListener('DOMContentLoaded', initSwiper);
+document
+  .querySelector('.swiper-button-next')
+  .addEventListener('click', resetAutoplay);
+document
+  .querySelector('.swiper-button-prev')
+  .addEventListener('click', resetAutoplay);
